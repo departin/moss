@@ -4,14 +4,14 @@
     "version": "1.1.0",
     "private": true,
     "description": "Moss, a calm Discord client",
-    "homepage": "https://github.com/mosscord/moss#readme",
+    "homepage": "https://github.com/departin/moss#readme",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/mosscord/moss.git"
+        "url": "git+https://github.com/departin/moss.git"
     },
     "keywords": [],
     "license": "GPL-3.0-or-later",
-    "author": "mosscord",
+    "author": "departin",
     "main": "dist/js/main.js",
     "scripts": {
         "build": "bun run scripts/build/build.mts",
@@ -236,7 +236,7 @@
         "publish": [
             {
                 "provider": "github",
-                "owner": "mosscord",
+                "owner": "departin",
                 "repo": "moss",
                 "releaseType": "release"
             }

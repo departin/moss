@@ -7,7 +7,7 @@
 <p align="center">
   A Discord desktop client for Windows with a cleaner design and tools for managing servers and notifications.
   <br><br>
-  <a href="https://github.com/mosscord/moss/releases/latest"><b>Download the latest release</b></a>
+  <a href="https://github.com/departin/moss/releases/latest"><b>Download the latest release</b></a>
 </p>
 
 ---
@@ -28,7 +28,7 @@ Moss runs the regular Discord app in its own window and builds on top of it. You
 
 ## Installation
 
-1. Download `Moss-Setup-<version>.exe` from the [releases page](https://github.com/mosscord/moss/releases/latest).
+1. Download `Moss-Setup-<version>.exe` from the [releases page](https://github.com/departin/moss/releases/latest).
 2. Run the installer. It isn't code-signed yet, so Windows SmartScreen may show a warning. Click **More info**, then **Run anyway**.
 3. The installer asks whether Moss should start with Windows, and whether the official Discord app should stop launching at startup. Both can be changed later.
 
@@ -36,11 +36,11 @@ Once installed, Moss keeps itself up to date. It can be removed from **Settings 
 
 ## Building from source
 
-Moss is split across two repositories. This one contains the desktop app, and [moss-core](https://github.com/mosscord/moss-core) contains the client mod with all of the features listed above. Clone them next to each other:
+Moss is split across two repositories. This one contains the desktop app, and [moss-core](https://github.com/departin/moss-core) contains the client mod with all of the features listed above. Clone them next to each other:
 
 ```sh
-git clone https://github.com/mosscord/moss-core moss
-git clone https://github.com/mosscord/moss moss-desktop
+git clone https://github.com/departin/moss-core moss
+git clone https://github.com/departin/moss moss-desktop
 ```
 
 You'll need [Node.js](https://nodejs.org) 22 or newer, [pnpm](https://pnpm.io) and [Bun](https://bun.sh). Build moss-core first, then the app:
