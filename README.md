@@ -1,71 +1,49 @@
 <p align="center">
-  <img src="static/icon.png" width="112" alt="Moss">
+  <img src="static/icon.png" width="96" alt="">
 </p>
 
 <h1 align="center">Moss</h1>
 
-<p align="center"><b>Discord, softened.</b><br>
-A calm Discord desktop app with smooth animations, your own colours, and the tools Discord should have had built in.</p>
-
 <p align="center">
-  <a href="https://github.com/mosscord/moss/releases/latest"><b>Download for Windows</b></a>
+  A Discord desktop client for Windows with a cleaner design and tools for managing servers and notifications.
+  <br><br>
+  <a href="https://github.com/mosscord/moss/releases/latest"><b>Download the latest release</b></a>
 </p>
 
 ---
 
-## What you get
+Moss runs the regular Discord app in its own window and builds on top of it. You log in with your normal account, everything you're used to still works, and Moss adds a calmer look along with a few features that make large server lists and busy notifications easier to deal with.
 
-**Your look, set up on first launch**
-- A short setup the first time you log in: language, colours, animations, plugins and startup options. Everything applies live, so you see it change behind the setup window.
-- Three colour modes: the Moss greens, Discord's own colours (Nitro themes included), or your own solid colour or gradient.
-- Five animation styles (Smooth, Snappy, Playful, Minimal, Off), each with a live preview, and switches for each area of the app.
-- A welcome screen and a 30-second tour of what Moss adds.
+## Features
 
-**Server manager**
-- See every server you're in with its icon, member count and when you last opened it.
-- Select the ones you don't use and leave them in one go, with a safe delay between each one.
-- Mark selected servers as read, or mute and unmute them.
-- Left one by mistake? It stays under **Recently left** for 30 days with a Join button.
+- **Appearance.** Choose between Moss's own colour palette, Discord's default colours, or your own colour or gradient, and pick one of five animation styles. A short setup takes you through this the first time you log in, and you can change it any time in settings.
+- **Server Manager.** Lists every server you're in along with when you last opened it, so you can clean out old ones in bulk. Servers are left one at a time with a delay between each, and anything you leave stays under "Recently left" for 30 days in case you want to rejoin.
+- **Quick Actions.** A button at the top of the server list for marking every server or DM as read, muting all servers for a set time, or switching every server to @mentions only.
+- **Focus Mode.** Sets you to Do Not Disturb and hides the member list until you turn it off or the timer runs out. Toggle it with Ctrl+Shift+F.
+- **Catch Up.** Summarises the unread messages in a channel or DM using an AI model through [OpenRouter](https://openrouter.ai). Requires a free OpenRouter API key.
+- **Bookmarks.** Drag any channel or DM onto the tab bar to bookmark it.
+- **Plugins.** Around 20 popular plugins are enabled out of the box, with several hundred more available in settings.
+- **Languages.** Moss is available in English, Spanish, French, German, Portuguese, Italian, Dutch, Polish, Turkish, Russian and Japanese.
+- **Automatic updates.** New versions download in the background and install the next time Moss restarts.
 
-**Quick actions** (the button at the top of your server list)
-- Mark every server or every DM as read.
-- Mute all servers for 1 hour, 8 hours, 24 hours or until you turn them back on. Moss only unmutes the servers it muted.
-- Switch every server to @mentions only, or hide @everyone and @here pings everywhere.
+## Installation
 
-**Focus mode**
-- One click or <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>F</kbd>: Do Not Disturb, no member list and no Active Now, for a set time or until you end it. Your old status comes back afterwards.
+1. Download `Moss-Setup-<version>.exe` from the [releases page](https://github.com/mosscord/moss/releases/latest).
+2. Run the installer. It isn't code-signed yet, so Windows SmartScreen may show a warning. Click **More info**, then **Run anyway**.
+3. The installer asks whether Moss should start with Windows, and whether the official Discord app should stop launching at startup. Both can be changed later.
 
-**Catch up**
-- Right click a channel or DM, or press <kbd>Alt</kbd>+<kbd>C</kbd>, for a short AI summary of what you missed.
-- Uses a free [OpenRouter](https://openrouter.ai/keys) API key. The setup shows you how to get one.
+Once installed, Moss keeps itself up to date. It can be removed from **Settings → Apps** like any other program.
 
-**Bookmarks**
-- Drag any channel or DM onto the bar at the top to pin it there.
+## Building from source
 
-**And the rest**
-- 20 plugins ready to go: platform indicators, permissions viewer, translate, message logger, voice messages, timezones, music controls and more. Hundreds more can be switched on in Settings.
-- 11 languages: English, Spanish, French, German, Portuguese (Brazil), Italian, Dutch, Polish, Turkish, Russian and Japanese.
-- Automatic updates. New versions download in the background and install when you restart.
-
-## Install
-
-1. Download the **Moss-Setup** `.exe` from the [latest release](https://github.com/mosscord/moss/releases/latest).
-2. Run it. Windows may show *"Windows protected your PC"* because the installer isn't code-signed. Click **More info**, then **Run anyway**.
-3. The installer asks whether Moss should start with Windows, and whether to stop the regular Discord app from starting too. Both can be changed later.
-4. Log in with your Discord account as usual. The setup opens right after.
-
-To uninstall, use **Settings → Apps** in Windows. If Moss turned off Discord's startup entry, uninstalling turns it back on.
-
-## Build it yourself
-
-Moss comes in two parts: this app, and [moss-core](https://github.com/mosscord/moss-core), the part that runs inside Discord. Clone both side by side:
+Moss is split across two repositories. This one contains the desktop app, and [moss-core](https://github.com/mosscord/moss-core) contains the client mod with all of the features listed above. Clone them next to each other:
 
 ```sh
 git clone https://github.com/mosscord/moss-core moss
 git clone https://github.com/mosscord/moss moss-desktop
 ```
 
-Then build the core first and the app second. You need [Node.js](https://nodejs.org), [pnpm](https://pnpm.io) and [Bun](https://bun.sh).
+You'll need [Node.js](https://nodejs.org) 22 or newer, [pnpm](https://pnpm.io) and [Bun](https://bun.sh). Build moss-core first, then the app:
 
 ```sh
 cd moss
@@ -78,12 +56,12 @@ bun run build
 bunx electron-builder --win nsis --x64 --publish never
 ```
 
-The installer ends up in `moss-desktop/dist`.
+The installer is written to `moss-desktop/dist`.
 
-## Good to know
+## Disclaimer
 
-Moss is not made by or affiliated with Discord. Like every modified Discord client, it goes against Discord's Terms of Service, so use it at your own risk. Bulk actions such as leaving or muting servers go one at a time with a delay, so Moss never hammers Discord with requests.
+Moss is an unofficial client and is not affiliated with or endorsed by Discord. Using a modified client goes against Discord's Terms of Service, so use it at your own discretion.
 
-## Licence
+## License
 
-Moss is free software under the [GPL-3.0-or-later](LICENSE) licence. It's built on the open-source projects Equibop and Equicord, which build on Vesktop and Vencord.
+Moss is released under the [GNU General Public License v3.0](LICENSE). It is based on Equibop and Equicord, which are forks of Vesktop and Vencord.
