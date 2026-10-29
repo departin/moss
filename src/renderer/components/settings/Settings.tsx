@@ -62,7 +62,7 @@ const SettingsOptions: Record<string, Array<BooleanSetting | SettingsComponent>>
         {
             key: "staticTitle",
             title: "Static Title",
-            description: 'Makes the window title "Equibop" instead of changing to the current page'
+            description: 'Makes the window title "Moss" instead of changing to the current page'
         },
         {
             key: "enableMenu",
@@ -86,7 +86,7 @@ const SettingsOptions: Record<string, Array<BooleanSetting | SettingsComponent>>
             key: "enableSplashScreen",
             title: "Enable Splash Screen",
             description:
-                "Shows a small splash screen while Equibop is loading. Disabling this option will show the main window earlier while it's still loading."
+                "Shows a small splash screen while Moss is loading. Disabling this option will show the main window earlier while it's still loading."
         },
         {
             key: "splashTheming",
@@ -105,20 +105,20 @@ const SettingsOptions: Record<string, Array<BooleanSetting | SettingsComponent>>
         {
             key: "tray",
             title: "Tray Icon",
-            description: "Add a tray icon for Equibop",
+            description: "Add a tray icon for Moss",
             invisible: () => isMac
         },
         {
             key: "minimizeToTray",
             title: "Minimize to tray",
-            description: "Hitting X will make Equibop minimize to the tray instead of closing",
+            description: "Hitting X will make Moss minimize to the tray instead of closing",
             invisible: () => isMac,
             disabled: () => !Settings.store.tray
         },
         {
             key: "clickTrayToShowHide",
             title: "Hide/Show on tray click",
-            description: "Left clicking tray icon will toggle the Equibop window visibility."
+            description: "Left clicking tray icon will toggle the Moss window visibility."
         },
         {
             key: "disableMinSize",
@@ -149,7 +149,7 @@ const SettingsOptions: Record<string, Array<BooleanSetting | SettingsComponent>>
         {
             key: "openLinksWithElectron",
             title: "Open Links in app (experimental)",
-            description: "Opens links in a new Equibop window instead of your web browser"
+            description: "Opens links in a new Moss window instead of your web browser"
         },
         WebRTCIPHandlingPolicyPicker
     ],
@@ -203,6 +203,6 @@ export default ErrorBoundary.wrap(
     },
     {
         message:
-            "Failed to render the Equibop Settings tab. If this issue persists, try to right click the Equibop tray icon, then click 'Repair Equicord'. And make sure your Equibop is up to date."
+            "Failed to render the Moss Settings tab. If this issue persists, try to right click the Moss tray icon, then click 'Repair Moss'. And make sure your Moss is up to date."
     }
 );

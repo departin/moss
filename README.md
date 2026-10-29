@@ -1,109 +1,89 @@
-# Equibop [<img src="/static/icon.png" width="225" align="right" alt="Equibop">](https://github.com/Equicord/Equibop)
+<p align="center">
+  <img src="static/icon.png" width="112" alt="Moss">
+</p>
 
-[![Equicord](https://img.shields.io/badge/Equicord-grey?style=flat)](https://github.com/Equicord/Equicord)
-[![Tests](https://github.com/Equicord/Equibop/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/Equicord/Equibop/actions/workflows/test.yml)
-[![Discord](https://img.shields.io/discord/1173279886065029291.svg?color=768AD4&label=Discord&logo=discord&logoColor=white)](https://equicord.org/discord)
+<h1 align="center">Moss</h1>
 
-Equibop is a fork of [Vesktop](https://github.com/Vencord/Vesktop).
+<p align="center"><b>Discord, softened.</b><br>
+A calm Discord desktop app with smooth animations, your own colours, and the tools Discord should have had built in.</p>
 
-You can join our [discord server](https://equicord.org/discord) for commits, changes, chat or even support.<br></br>
+<p align="center">
+  <a href="https://github.com/mosscord/moss/releases/latest"><b>Download for Windows</b></a>
+</p>
 
-**Main features**:
-- Equicord preinstalled
-- Much more lightweight and faster than the official Discord app
-- Linux Screenshare with sound & wayland
-- Much better privacy, since Discord has no access to your system
+---
 
-**Extra included changes**
+## What you get
 
-- Tray Customization with voice detection and notification badges
-- Command-line flags to toggle microphone and deafen status (Linux)
-- Custom Arguments from [this PR](https://github.com/Equicord/Equibop/pull/46)
-- arRPC-bun with debug logging support https://github.com/Creationsss/arrpc-bun
+**Your look, set up on first launch**
+- A short setup the first time you log in: language, colours, animations, plugins and startup options. Everything applies live, so you see it change behind the setup window.
+- Three colour modes: the Moss greens, Discord's own colours (Nitro themes included), or your own solid colour or gradient.
+- Five animation styles (Smooth, Snappy, Playful, Minimal, Off), each with a live preview, and switches for each area of the app.
+- A welcome screen and a 30-second tour of what Moss adds.
 
-**Not fully Supported**:
-- Global Keybinds (Windows/macOS - use command-line flags on Linux instead)
+**Server manager**
+- See every server you're in with its icon, member count and when you last opened it.
+- Select the ones you don't use and leave them in one go, with a safe delay between each one.
+- Mark selected servers as read, or mute and unmute them.
+- Left one by mistake? It stays under **Recently left** for 30 days with a Join button.
 
-## Equibop Arguments
-> [!NOTE]
-> For the full list of supported flags and how to apply them, see the
-[Tips & Tricks](https://equibop.org/wiki/linux/tips/) page on the wiki!
+**Quick actions** (the button at the top of your server list)
+- Mark every server or every DM as read.
+- Mute all servers for 1 hour, 8 hours, 24 hours or until you turn them back on. Moss only unmutes the servers it muted.
+- Switch every server to @mentions only, or hide @everyone and @here pings everywhere.
 
-### Quick reference
+**Focus mode**
+- One click or <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>F</kbd>: Do Not Disturb, no member list and no Active Now, for a set time or until you end it. Your old status comes back afterwards.
 
-| Flag                            | Description                             |
-|---------------------------------|-----------------------------------------|
-| `--ozone-platform=wayland`      | Force native Wayland                    |
-| `--ozone-platform=x11`          | Force XWayland                          |
-| `--no-sandbox`                  | Disable Chromium sandbox (use with caution) |
-| `--force_high_performance_gpu`  | Prefer discrete GPU                     |
-| `--start-minimized`             | Launch minimized to tray                |
-| `--toggle-mic`                  | Toggle mic (bind to shortcuts)          |
-| `--toggle-deafen`               | Toggle deafen (bind to shortcuts)       |
-| `--toggle-vad`                  | Toggle Voice Activity Detection (Voice Activity <-> Push To Talk) |
+**Catch up**
+- Right click a channel or DM, or press <kbd>Alt</kbd>+<kbd>C</kbd>, for a short AI summary of what you missed.
+- Uses a free [OpenRouter](https://openrouter.ai/keys) API key. The setup shows you how to get one.
 
-### Persistent flags
+**Bookmarks**
+- Drag any channel or DM onto the bar at the top to pin it there.
 
-Add flags to `${XDG_CONFIG_HOME}/equibop-flags.conf` — one per line, lines starting with `#` are comments.
+**And the rest**
+- 20 plugins ready to go: platform indicators, permissions viewer, translate, message logger, voice messages, timezones, music controls and more. Hundreds more can be switched on in Settings.
+- 11 languages: English, Spanish, French, German, Portuguese (Brazil), Italian, Dutch, Polish, Turkish, Russian and Japanese.
+- Automatic updates. New versions download in the background and install when you restart.
 
-## Installing
-Check the [Releases](https://github.com/Equicord/Equibop/releases) page
+## Install
 
-OR
+1. Download the **Moss-Setup** `.exe` from the [latest release](https://github.com/mosscord/moss/releases/latest).
+2. Run it. Windows may show *"Windows protected your PC"* because the installer isn't code-signed. Click **More info**, then **Run anyway**.
+3. The installer asks whether Moss should start with Windows, and whether to stop the regular Discord app from starting too. Both can be changed later.
+4. Log in with your Discord account as usual. The setup opens right after.
 
-Check The Downloads from the [website](https://equibop.org/install)
+To uninstall, use **Settings → Apps** in Windows. If Moss turned off Discord's startup entry, uninstalling turns it back on.
 
-### Linux
+## Build it yourself
 
-[![Equibop](https://img.shields.io/badge/AVAILABLE_ON_THE_AUR-333232?style=for-the-badge&logo=arch-linux&logoColor=0F94D2&labelColor=%23171717)](https://aur.archlinux.org/packages?O=0&K=equibop)
-<br>
-<!-- <a href="https://flathub.org/apps/io.github.equicord.equibop">
-  <img src="https://flathub.org/api/badge?svg" alt="Download on Flathub" style="width:220px; height:auto;">
-</a> -->
-
-#### Community packages
-
-Below you can find unofficial packages created by the community. They are not officially supported by us, so before reporting issues, please first confirm the issue also happens on official builds. When in doubt, consult with their packager first. The AppImage should work on any distro that supports them, so I recommend you just use that instead!
-
-- Arch Linux: [Equibop on the Arch user repository](https://aur.archlinux.org/packages?K=equibop)
-- Void Linux: [Equibop on the Void repository](https://void.creations.works/)
-- NixOS: `nix-shell -p equibop`
-
-## Building from Source
-
-You need to have the following dependencies installed:
-- [Git](https://git-scm.com/downloads)
-- [Bun](https://bun.sh)
-
-Packaging will create builds in the dist/ folder
+Moss comes in two parts: this app, and [moss-core](https://github.com/mosscord/moss-core), the part that runs inside Discord. Clone both side by side:
 
 ```sh
-git clone https://github.com/Equicord/Equibop
-cd Equibop
-
-# Install Dependencies
-bun install
-
-# Either run it without packaging
-bun start
-
-# Or package (will build packages for your OS)
-bun package
-
-# Or only build the Linux Pacman package
-bun package --linux pacman
-
-# Or package to a directory only
-bun package:dir
+git clone https://github.com/mosscord/moss-core moss
+git clone https://github.com/mosscord/moss moss-desktop
 ```
 
-## Building LibVesktop from Source
+Then build the core first and the app second. You need [Node.js](https://nodejs.org), [pnpm](https://pnpm.io) and [Bun](https://bun.sh).
 
-This is a small C++ helper library Equibop uses on Linux to emit D-Bus events. By default, prebuilt binaries for x64 and arm64 are used.
+```sh
+cd moss
+pnpm install --frozen-lockfile
+pnpm build --standalone --disable-updater
 
-If you want to build it from source:
-1. Install build dependencies:
-    - Debian/Ubuntu: `apt install build-essential python3 curl pkg-config libglib2.0-dev`
-    - Fedora: `dnf install @c-development @development-tools python3 curl pkgconf-pkg-config glib2-devel`
-2. Run `bun buildLibVesktop`
-3. From now on, building Equibop will use your own build
+cd ../moss-desktop
+bun install
+bun run build
+bunx electron-builder --win nsis --x64 --publish never
+```
+
+The installer ends up in `moss-desktop/dist`.
+
+## Good to know
+
+Moss is not made by or affiliated with Discord. Like every modified Discord client, it goes against Discord's Terms of Service, so use it at your own risk. Bulk actions such as leaving or muting servers go one at a time with a delay, so Moss never hammers Discord with requests.
+
+## Licence
+
+Moss is free software under the [GPL-3.0-or-later](LICENSE) licence. It's built on the open-source projects Equibop and Equicord, which build on Vesktop and Vencord.

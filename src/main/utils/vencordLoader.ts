@@ -37,12 +37,7 @@ export async function githubGet(endpoint: string) {
 }
 
 export async function downloadVencordAsar() {
-    await downloadFile(
-        "https://github.com/Equicord/Equicord/releases/latest/download/equibop.asar",
-        VENCORD_DIR,
-        {},
-        { retryOnNetworkError: true }
-    );
+    throw new Error("Moss files are bundled with the app. Reinstall Moss to repair it.");
 }
 
 export function isValidVencordInstall(dir: string) {
@@ -50,7 +45,5 @@ export function isValidVencordInstall(dir: string) {
 }
 
 export async function ensureVencordFiles() {
-    if (existsSync(VENCORD_DIR)) return;
-
-    await downloadVencordAsar();
+    if (!existsSync(VENCORD_DIR)) throw new Error(`Moss files are missing (${VENCORD_DIR}). Reinstall Moss.`);
 }

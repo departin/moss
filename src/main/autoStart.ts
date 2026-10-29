@@ -87,7 +87,7 @@ const autoStartWindowsMac: AutoStart = {
 };
 
 // The portal call uses the app id by default, which is org.chromium.Chromium, even in packaged Vesktop.
-// This leads to an autostart entry named "Chromium" instead of "Vesktop".
+// This leads to an autostart entry named "Chromium" instead of "Moss".
 // Thus, only use the portal inside Flatpak, where the app is actually correct.
 // Maybe there is a way to fix it outside of flatpak, but I couldn't figure it out.
 export const autoStart =

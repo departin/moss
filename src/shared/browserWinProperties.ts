@@ -9,8 +9,8 @@ import type { BrowserWindowConstructorOptions } from "electron";
 export const SplashProps: BrowserWindowConstructorOptions = {
     transparent: true,
     frame: false,
-    height: 350,
-    width: 300,
+    height: 420,
+    width: 360,
     center: true,
     resizable: false,
     maximizable: false,

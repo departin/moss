@@ -6,10 +6,14 @@
 
 import { join } from "path";
 
-import { SESSION_DATA_DIR } from "./constants";
+import { app } from "electron";
+import { STATIC_DIR } from "shared/paths";
+
 import { State } from "./settings";
 
 // this is in a separate file to avoid circular dependencies
 export const VENCORD_DIR = State.store.equicordDir
     ? join(State.store.equicordDir, "equibop")
-    : join(SESSION_DATA_DIR, "equicord.asar");
+    : app.isPackaged
+      ? join(process.resourcesPath, "moss.asar")
+      : join(STATIC_DIR, "..", "..", "moss", "dist", "equibop.asar");

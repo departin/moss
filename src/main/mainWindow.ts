@@ -33,13 +33,13 @@ import { spoofGnu } from "./gnuSpoofing";
 import { sendRendererCommand } from "./ipcCommands";
 import { initKeybinds } from "./keybinds";
 import { Settings, State, VencordSettings } from "./settings";
-import { addSplashLog, createSplashWindow, updateSplashMessage } from "./splash";
+import { addSplashLog, closeSplash, createSplashWindow, updateSplashMessage } from "./splash";
 import { darwinURL } from "./startup";
 import { destroyTray, initTray } from "./tray";
 import { clearData } from "./utils/clearData";
 import { makeLinksOpenExternally } from "./utils/makeLinksOpenExternally";
 import { applyDeckKeyboardFix, askToApplySteamLayout, isDeckGameMode } from "./utils/steamOS";
-import { downloadVencordAsar, ensureVencordFiles } from "./utils/vencordLoader";
+import { ensureVencordFiles } from "./utils/vencordLoader";
 import { VENCORD_DIR } from "./vencordDir";
 
 let isQuitting = false;
@@ -85,25 +85,15 @@ function initMenuBar(win: BrowserWindow) {
 
     const subMenu = [
         {
-            label: "About Equibop",
+            label: "About Moss",
             click: createAboutWindow
         },
         {
-            label: "Force Update Equicord",
-            async click() {
-                await downloadVencordAsar();
-                destroyTray();
-                app.relaunch();
-                app.quit();
-            },
-            toolTip: "Equibop will automatically restart after this operation"
-        },
-        {
-            label: "Reset Equibop",
+            label: "Reset Moss",
             async click() {
                 await clearData(win);
             },
-            toolTip: "Equibop will automatically restart after this operation"
+            toolTip: "Moss will automatically restart after this operation"
         },
         {
             label: "Relaunch",
@@ -190,7 +180,7 @@ function initMenuBar(win: BrowserWindow) {
 
     const menuItems = [
         {
-            label: "Equibop",
+            label: "Moss",
             role: "appMenu",
             submenu: subMenu.filter(isTruthy)
         },
@@ -299,7 +289,7 @@ function initStaticTitle(win: BrowserWindow) {
 
     addSettingsListener("staticTitle", enabled => {
         if (enabled) {
-            win.setTitle("Equibop");
+            win.setTitle("Moss");
             win.on("page-title-updated", listener);
         } else {
             win.off("page-title-updated", listener);
@@ -397,14 +387,10 @@ function buildBrowserWindowOptions(): BrowserWindowConstructorOptions {
     if (transparencyOption && transparencyOption !== "none") {
         options.backgroundColor = "#00000000";
         options.backgroundMaterial = transparencyOption;
-
-        if (frameless) {
-            options.transparent = true;
-        }
     }
 
     if (staticTitle) {
-        options.title = "Equibop";
+        options.title = "Moss";
     }
 
     if (process.platform === "darwin") {
@@ -521,7 +507,7 @@ export async function createWindows() {
     mainWin = createMainWindow();
 
     AppEvents.on("appLoaded", () => {
-        splash?.destroy();
+        closeSplash();
 
         if (!startMinimized) {
             if (splash) mainWin?.show();

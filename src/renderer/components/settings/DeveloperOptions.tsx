@@ -17,9 +17,9 @@ export const DeveloperOptionsButton: SettingsComponent = ({ settings }) => {
 
 function openDeveloperOptionsModal(settings: Settings) {
     openModal(props => (
-        <Modal {...props} size="md" title="Equibop Developer Options">
+        <Modal {...props} size="md" title="Moss Developer Options">
             <div style={{ padding: "1em 0" }}>
-                <Heading tag="h5">Equicord Location</Heading>
+                <Heading tag="h5">Moss Location</Heading>
                 <EquicordLocationPicker settings={settings} />
 
                 <Heading tag="h5" className={Margins.top16}>
@@ -68,7 +68,7 @@ const EquicordLocationPicker: SettingsComponent = ({ settings }) => {
                                 break;
                             case "ok":
                                 Toasts.show({
-                                    message: "Equicord install changed. Fully restart Equibop to apply.",
+                                    message: "Moss install changed. Fully restart Moss to apply.",
                                     id: Toasts.genId(),
                                     type: Toasts.Type.SUCCESS
                                 });
@@ -76,7 +76,7 @@ const EquicordLocationPicker: SettingsComponent = ({ settings }) => {
                             case "invalid":
                                 Toasts.show({
                                     message:
-                                        "You did not choose a valid Equicord install. Make sure you're selecting the dist dir!",
+                                        "You did not choose a valid Moss install. Make sure you're selecting the dist dir!",
                                     id: Toasts.genId(),
                                     type: Toasts.Type.FAILURE
                                 });

@@ -11,7 +11,7 @@ import { handleVesktopStaticProtocol } from "./vesktopStatic";
 
 protocol.registerSchemesAsPrivileged([
     {
-        scheme: "equibop",
+        scheme: "moss",
         privileges: {
             standard: true,
             secure: true,
@@ -23,7 +23,7 @@ protocol.registerSchemesAsPrivileged([
 ]);
 
 app.whenReady().then(() => {
-    protocol.handle("equibop", async req => {
+    protocol.handle("moss", async req => {
         const url = new URL(req.url);
 
         switch (url.hostname) {

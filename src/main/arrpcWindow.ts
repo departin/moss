@@ -102,7 +102,7 @@ export function createArRPCWindow() {
                 } else if (isLocalArrpcHost(value)) {
                     Settings.store.arRPCWebSocketCustomHost = value;
                 } else {
-                    console.warn(`[Equibop] Refusing non-local arRPC host: ${value}`);
+                    console.warn(`[Moss] Refusing non-local arRPC host: ${value}`);
                 }
                 break;
             case "arRPCWebSocketCustomPort":

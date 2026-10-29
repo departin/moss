@@ -57,6 +57,14 @@ export const VesktopNative = {
             ipcRenderer.on(IpcEvents.VESKTOP_RENDERER_CSS_UPDATE, (_e, newCss: string) => cb(newCss));
         }
     },
+    mossUpdater: {
+        status: () => invoke<{ enabled: boolean; readyVersion: string | null; version: string; }>(IpcEvents.MOSS_UPDATE_STATUS),
+        check: () => invoke<string | null>(IpcEvents.MOSS_UPDATE_CHECK),
+        install: () => invoke<void>(IpcEvents.MOSS_UPDATE_INSTALL),
+        onReady(cb: (version: string) => void) {
+            ipcRenderer.on(IpcEvents.MOSS_UPDATE_READY, (_, version: string) => cb(version));
+        }
+    },
     autostart: {
         isEnabled: () => sendSync<boolean>(IpcEvents.AUTOSTART_ENABLED),
         enable: () => invoke<void>(IpcEvents.ENABLE_AUTOSTART),

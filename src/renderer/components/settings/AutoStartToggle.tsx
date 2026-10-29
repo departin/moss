@@ -16,7 +16,7 @@ export const AutoStartToggle: SettingsComponent = ({ settings }) => {
         <>
             <VesktopSettingsSwitch
                 title="Start With System"
-                description="Automatically start Equibop on computer start-up"
+                description="Automatically start Moss on computer start-up"
                 value={autoStartEnabled}
                 onChange={async v => {
                     await VesktopNative.autostart[v ? "enable" : "disable"]();
@@ -26,7 +26,7 @@ export const AutoStartToggle: SettingsComponent = ({ settings }) => {
 
             <VesktopSettingsSwitch
                 title="Auto Start Minimized"
-                description={"Start Equibop minimized when starting with system"}
+                description={"Start Moss minimized when starting with system"}
                 value={settings.autoStartMinimized}
                 onChange={v => (settings.autoStartMinimized = v)}
                 disabled={!autoStartEnabled}

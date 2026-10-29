@@ -4,14 +4,12 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-import { BrowserWindow, nativeTheme } from "electron";
+import { app, BrowserWindow } from "electron";
 import { join } from "path";
 import { SplashProps } from "shared/browserWinProperties";
 import { STATIC_DIR } from "shared/paths";
 
-import { DATA_DIR } from "./constants";
-import { Settings } from "./settings";
-import { fileExistsAsync } from "./utils/fileExists";
+import { VencordSettings } from "./settings";
 
 export let splash: BrowserWindow | undefined;
 import { loadView } from "./vesktopStatic";
@@ -46,54 +44,16 @@ export async function createSplashWindow(startMinimized = false) {
     });
 
     splash.webContents.setMaxListeners(15);
-    loadView(splash, "splash.html");
+    loadView(splash, "splash.html", new URLSearchParams({ v: app.getVersion() }));
 
-    const { splashBackground, splashColor, splashTheming, splashProgress, splashPixelated } = Settings.store;
-
-    const isDark = nativeTheme.shouldUseDarkColors;
-    const systemBg = isDark ? "hsl(223 6.7% 20.6%)" : "white";
-    const systemFg = isDark ? "white" : "black";
-    const systemFgSemiTrans = isDark ? "rgb(255 255 255 / 0.2)" : "rgb(0 0 0 / 0.2)";
-
-    if (splashTheming) {
-        const fg = splashColor || systemFg;
-        const bg = splashBackground || systemBg;
-        const fgSemiTrans = splashColor
-            ? splashColor.replace("rgb(", "rgba(").replace(")", ", 0.2)")
-            : systemFgSemiTrans;
-
-        splash.webContents.insertCSS(
-            `body { --bg: ${bg} !important; --fg: ${fg} !important; --fg-semi-trans: ${fgSemiTrans} !important; }`
-        );
-    } else {
-        splash.webContents.insertCSS(
-            `body { --bg: ${systemBg} !important; --fg: ${systemFg} !important; --fg-semi-trans: ${systemFgSemiTrans} !important; }`
-        );
-    }
-
-    if (splashPixelated) {
-        splash.webContents.insertCSS(`img { image-rendering: pixelated; }`);
-    }
-
-    const customSplashPath = join(DATA_DIR, "userAssets", "splash");
-    const hasCustomSplash = await fileExistsAsync(customSplashPath);
-
-    if (!hasCustomSplash) {
-        splash.webContents.insertCSS(`
-            @keyframes spin {
-                from { transform: rotate(0deg); }
-                to { transform: rotate(-360deg); }
-            }
-
-            img {
-                animation: spin 2s linear infinite;
-            }
-        `);
-    }
-
-    if (!splashProgress) {
-        sendToSplash("set-splash-progress-visible", false);
-    }
+    const theme = VencordSettings.store.plugins?.MossTheme ?? {};
+    const stops = [theme.accent, theme.accent2, theme.accent3].filter((c?: string) => /^#[0-9a-f]{6}$/i.test(c ?? ""));
+    const custom = theme.colorMode === "custom" && stops.length > 0;
+    const accent = custom ? stops[0] : theme.colorMode === "discord" ? "#5865F2" : "#9AD4B1";
+    const fill = custom && theme.accentStyle === "gradient" && stops.length > 1
+        ? `linear-gradient(90deg, ${stops.join(", ")})`
+        : `linear-gradient(90deg, color-mix(in srgb, ${accent} 55%, black), ${accent})`;
+    splash.webContents.insertCSS(`:root { --accent: ${accent}; --fill: ${fill}; }`);
 
     splash.webContents.once("did-finish-load", () => {
         if (!splash || splash.isDestroyed()) return;
@@ -126,4 +86,11 @@ export function getSplash() {
 
 export function updateSplashMessage(message: string) {
     sendToSplash("update-splash-message", message);
+}
+
+export function closeSplash() {
+    if (!splash || splash.isDestroyed()) return;
+    const closing = splash;
+    closing.webContents.send("splash-fade-out");
+    setTimeout(() => closing.isDestroyed() || closing.destroy(), 240);
 }

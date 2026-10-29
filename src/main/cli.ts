@@ -83,7 +83,7 @@ const options = {
     repair: {
         type: "boolean",
         short: "r",
-        description: "Re-download Equicord and restart"
+        description: "Re-download Moss and restart"
     }
 } satisfies Record<string, Option>;
 
@@ -102,7 +102,7 @@ const extraOptions = {
     "ozone-platform": {
         hidden: process.platform !== "linux",
         type: "string",
-        description: "Whether to run Equibop in Wayland or X11 (XWayland)",
+        description: "Whether to run Moss in Wayland or X11 (XWayland)",
         options: ["x11", "wayland"]
     }
 } satisfies Record<string, Option>;
@@ -124,11 +124,11 @@ export async function checkCommandLineForRepair() {
 
     const { State } = await import("./settings");
     if (State.store.equicordDir) {
-        console.error("Cannot repair: using custom Equicord directory. Remove it in settings first.");
+        console.error("Cannot repair: using custom Moss directory. Remove it in settings first.");
         process.exit(1);
     }
 
-    console.log("Repairing Equicord...");
+    console.log("Repairing Moss...");
     const { downloadVencordAsar } = await import("./utils/vencordLoader");
     await downloadVencordAsar();
     console.log("Repair complete.");
@@ -140,7 +140,7 @@ export function checkCommandLineForHelpOrVersion() {
     const { help, version } = CommandLine.values;
 
     if (version) {
-        console.log(`Equibop v${app.getVersion()}`);
+        console.log(`Moss v${app.getVersion()}`);
         app.exit(0);
     }
 
@@ -210,7 +210,7 @@ function checkCommandLineForToggleCommands() {
         app.exit(0);
     }
 
-    console.error("Equibop is not running. Toggle commands require a running instance.");
+    console.error("Moss is not running. Toggle commands require a running instance.");
     app.exit(1);
 }
 
@@ -259,7 +259,7 @@ function checkCommandLineForQueryCommands() {
         return true;
     }
 
-    console.error("Equibop is not running. Query commands require a running instance.");
+    console.error("Moss is not running. Query commands require a running instance.");
     app.exit(1);
 }
 
@@ -341,11 +341,11 @@ function checkForSecondInstance() {
 
     if (!app.requestSingleInstanceLock({ IS_DEV })) {
         if (!IS_DEV) {
-            console.log("Equibop is already running. Quitting...");
+            console.log("Moss is already running. Quitting...");
             app.exit(0);
         }
 
-        console.log("Equibop is already running. Quitting previous instance...");
+        console.log("Moss is already running. Quitting previous instance...");
     }
 
     setupSecondInstanceHandler();

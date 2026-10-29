@@ -14,7 +14,6 @@ import { rmSync } from "fs";
 import { join } from "path";
 
 import { DATA_DIR, SESSION_DATA_DIR } from "./constants";
-import { createFirstLaunchTour } from "./firstLaunch";
 import { createWindows } from "./mainWindow";
 import { registerMediaPermissionsHandler } from "./mediaPermissions";
 import { registerScreenShareHandler } from "./screenShare";
@@ -22,7 +21,7 @@ import { Settings, State } from "./settings";
 import { setAsDefaultProtocolClient } from "./utils/setAsDefaultProtocolClient";
 import { isDeckGameMode } from "./utils/steamOS";
 
-console.log("Equibop v" + app.getVersion());
+console.log("Moss v" + app.getVersion());
 
 process.env.EQUICORD_USER_DATA_DIR = DATA_DIR;
 
@@ -47,7 +46,7 @@ function clearStaleWasmCodeCache() {
 
 function init() {
     clearStaleWasmCodeCache();
-    setAsDefaultProtocolClient("discord");
+    if (app.isPackaged) setAsDefaultProtocolClient("discord");
 
     const { disableSmoothScroll, hardwareAcceleration, hardwareVideoAcceleration } = Settings.store;
     const { launchArguments } = State.store;
@@ -134,7 +133,7 @@ function init() {
     if (isDeckGameMode) nativeTheme.themeSource = "dark";
 
     app.whenReady().then(async () => {
-        if (process.platform === "win32") app.setAppUserModelId("org.equicord.equibop");
+        if (process.platform === "win32") app.setAppUserModelId("app.moss.client");
 
         registerScreenShareHandler();
         registerMediaPermissionsHandler();
@@ -150,11 +149,8 @@ function init() {
 init();
 
 async function bootstrap() {
-    if (!Object.hasOwn(State.store, "firstLaunch")) {
-        createFirstLaunchTour();
-    } else {
-        createWindows();
-    }
+    State.store.firstLaunch = false;
+    createWindows();
 }
 
 export let darwinURL: string | undefined;

@@ -11,7 +11,7 @@ export const DefaultEquibopSettings: Settings = {
     hardwareAcceleration: true,
     hardwareVideoAcceleration: false,
     nativeTitleBar: process.platform !== "win32",
-    staticTitle: false,
+    staticTitle: true,
     enableMenu: false,
     enableShadow: true,
     enableRoundedCorners: true,

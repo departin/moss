@@ -2,13 +2,36 @@
 <meta charset="utf-8" />
 
 <head>
-    <link rel="stylesheet" href="./common.css" type="text/css" />
-
     <style>
+        @font-face {
+            font-family: "Moss Figtree";
+            src: url("../fonts/figtree.woff2") format("woff2");
+            font-weight: 300 900;
+        }
+
+        @font-face {
+            font-family: "Moss Wordmark";
+            src: url("../fonts/bricolage-600.woff2") format("woff2");
+            font-weight: 600;
+        }
+
+        :root {
+            --accent: #9ad4b1;
+            --fill: linear-gradient(90deg, #4f8f6c, #9ad4b1);
+            --night: #0d110f;
+            --lichen: #2a3430;
+            --stone: #1f2723;
+            --bone: #ece9e1;
+            --sage: #aab3ad;
+            --muted: #717d76;
+            --ease: cubic-bezier(.22, 1, .36, 1);
+        }
+
         html,
         body {
             width: 100%;
             height: 100%;
+            margin: 0;
         }
 
         body {
@@ -16,110 +39,187 @@
             user-select: none;
             -webkit-app-region: drag;
             overflow: hidden;
+            font-family: "Moss Figtree", "Segoe UI", sans-serif;
         }
 
-        .wrapper {
+        .splash {
+            position: relative;
+            box-sizing: border-box;
             width: 100%;
             height: 100%;
-            box-sizing: border-box;
+            display: grid;
+            place-items: center;
+            border-radius: 22px;
+            background: var(--night);
+            border: 1px solid var(--lichen);
+            overflow: hidden;
+            animation: in .45s var(--ease) both;
+            transition: opacity .22s var(--ease), transform .22s var(--ease);
+        }
+
+        .splash.out {
+            opacity: 0;
+            transform: scale(.98);
+        }
+
+        @keyframes in {
+            from {
+                opacity: 0;
+                transform: scale(.97);
+            }
+        }
+
+        .glow {
+            position: absolute;
+            width: 230px;
+            height: 230px;
+            left: 50%;
+            top: 50px;
+            margin-left: -115px;
+            border-radius: 50%;
+            background: var(--accent);
+            opacity: .14;
+            filter: blur(70px);
+            animation: drift 6s ease-in-out infinite alternate;
+        }
+
+        @keyframes drift {
+            from {
+                opacity: .1;
+                transform: translate(-8px, 6px);
+            }
+
+            to {
+                opacity: .2;
+                transform: translate(8px, -6px);
+            }
+        }
+
+        .content {
+            position: relative;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
-            border-radius: 8px;
-            border: 1px solid var(--fg-semi-trans);
-            background: var(--bg);
+            gap: 18px;
+            margin-top: -10px;
         }
 
-        #progress-section {
-            width: 100%;
-        }
-
-        .progressbar {
-            position: relative;
-            height: 17.5px;
-            width: auto;
-            box-sizing: border-box;
-            margin-left: 16px;
-            margin-right: 16px;
-            background-color: color-mix(in srgb, var(--bg), black 20%);
-            border: 1px solid color-mix(in srgb, var(--fg-semi-trans), white 10%);
-            border-radius: 4px;
-        }
-
-        .progressbar #progress {
-            height: 100%;
-            width: 0%;
-            max-width: 100%;
-            background-color: color-mix(in srgb, var(--fg-semi-trans), black 10%);
-            border-radius: 4px;
-            transition: width 0.5s ease-in;
-        }
-
-        .progressbar #progress-percentage {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            font-size: 13px;
-            font-weight: bold;
-            outline: 1px solid var(--fg-semi-trans);
-        }
-
-        .message {
-            top: 70%;
-            word-break: break-word;
-            padding: 0 16px;
-            position: absolute;
-            font-size: 14px
-        }
-
-        p {
-            text-align: center;
-        }
-
-        img {
-            width: 128px;
-            height: 128px;
+        .mark {
+            width: 96px;
+            height: 96px;
             object-fit: contain;
+            animation: breathe 2.4s ease-in-out infinite;
+        }
+
+        @keyframes breathe {
+            50% {
+                transform: scale(1.04);
+            }
+        }
+
+        .word {
+            font-family: "Moss Wordmark", "Moss Figtree", sans-serif;
+            font-weight: 600;
+            font-size: 44px;
+            line-height: 46px;
+            letter-spacing: -.03em;
+            color: var(--bone);
+        }
+
+        .status {
+            height: 18px;
+            margin-top: 10px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--sage);
+            transition: opacity .3s var(--ease), transform .3s var(--ease);
+        }
+
+        .status.swap {
+            opacity: 0;
+            transform: translateY(4px);
+        }
+
+        .bar {
+            width: 168px;
+            height: 4px;
+            border-radius: 2px;
+            background: var(--stone);
+            overflow: hidden;
+        }
+
+        .bar i {
+            display: block;
+            width: 6%;
+            height: 100%;
+            border-radius: 2px;
+            background: var(--fill);
+            transition: width .6s var(--ease);
+        }
+
+        .error {
+            position: absolute;
+            left: 20px;
+            right: 20px;
+            bottom: 46px;
+            font-size: 12px;
+            line-height: 1.4;
+            text-align: center;
+            color: #e8735e;
+        }
+
+        .ver {
+            position: absolute;
+            bottom: 22px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 11px;
+            letter-spacing: .04em;
+            color: var(--muted);
         }
     </style>
 </head>
 
 <body>
-    <div class="wrapper">
-        <img draggable="false" src="equibop://assets/splash" alt="" role="presentation" />
-        <p>Loading Equibop...</p>
-        <p class="message"></p>
-
-        <div id="progress-section">
-            <div class="progressbar">
-                <span id="progress-percentage">0%</span>
-                <div id="progress"></div>
-            </div>
+    <div class="splash" id="splash">
+        <div class="glow"></div>
+        <div class="content">
+            <img class="mark" draggable="false" src="moss://assets/splash" alt="" role="presentation" />
+            <div class="word">moss</div>
+            <div class="status" id="status">Starting Moss…</div>
+            <div class="bar"><i id="bar"></i></div>
         </div>
+        <div class="error" id="error"></div>
+        <div class="ver" id="ver"></div>
     </div>
 </body>
 
 <script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const messageElement = document.querySelector('.message');
-        const progressBar = document.getElementById("progress");
-        const progressPercentage = document.getElementById("progress-percentage");
-        const progressSection = document.getElementById("progress-section");
+    const status = document.getElementById("status");
+    const bar = document.getElementById("bar");
+    const error = document.getElementById("error");
+    const steps = [[0, "Starting Moss…"], [35, "Loading your servers…"], [75, "Almost there…"]];
+    let current = steps[0][1];
 
-        VesktopSplashNative.onUpdateMessage(message => {
-            messageElement.textContent = message;
-        });
-        VesktopSplashNative.onUpdateProgress(percentage => {
-            progressBar.style.width = percentage + "%";
-            progressPercentage.textContent = percentage + "%";
-        });
-        VesktopSplashNative.onSetProgressVisible(visible => {
-            progressSection.style.display = visible ? "" : "none";
-        });
+    function setStatus(text) {
+        if (text === current) return;
+        current = text;
+        status.classList.add("swap");
+        setTimeout(() => {
+            status.textContent = text;
+            status.classList.remove("swap");
+        }, 220);
+    }
+
+    VesktopSplashNative.onUpdateMessage(message => {
+        error.textContent = message;
     });
+    VesktopSplashNative.onUpdateProgress(percentage => {
+        bar.style.width = Math.max(6, Math.min(96, percentage)) + "%";
+        setStatus(steps.filter(([at]) => percentage >= at).pop()[1]);
+    });
+    VesktopSplashNative.onSetProgressVisible(() => { });
+    VesktopSplashNative.onFadeOut?.(() => document.getElementById("splash").classList.add("out"));
+    document.getElementById("ver").textContent = "v" + (new URLSearchParams(location.search).get("v") ?? "");
 </script>
