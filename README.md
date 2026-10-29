@@ -18,7 +18,7 @@ Moss runs the regular Discord app in its own window and builds on top of it. You
 
 - **Appearance.** Choose between Moss's own colour palette, Discord's default colours, or your own colour or gradient, and pick one of five animation styles. A short setup takes you through this the first time you log in, and you can change it any time in settings.
 - **Server Manager.** Lists every server you're in along with when you last opened it, so you can clean out old ones in bulk. Servers are left one at a time with a delay between each, and anything you leave stays under "Recently left" for 30 days in case you want to rejoin.
-- **Quick Actions.** A button at the top of the server list for marking every server or DM as read, muting all servers for a set time, or switching every server to @mentions only.
+- **Quick Actions.** A button at the top of the server list for marking every server or DM as read, muting all servers for a set time, or switching every server to mentions only.
 - **Focus Mode.** Sets you to Do Not Disturb and hides the member list until you turn it off or the timer runs out. Toggle it with Ctrl+Shift+F.
 - **Catch Up.** Summarises the unread messages in a channel or DM using an AI model through [OpenRouter](https://openrouter.ai). Requires a free OpenRouter API key.
 - **Bookmarks.** Drag any channel or DM onto the tab bar to bookmark it.
