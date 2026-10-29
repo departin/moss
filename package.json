@@ -20,6 +20,7 @@
         "compileArrpc": "bun run scripts/build/compileArrpc.mts",
         "package": "bun run build && electron-builder",
         "package:dir": "bun run build && electron-builder --dir",
+        "patcher": "bun run scripts/build/patcher.mts",
         "lint": "eslint",
         "lint:fix": "bun lint --fix",
         "start": "bun run build && electron .",

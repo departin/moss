@@ -24,15 +24,33 @@ Moss runs the regular Discord app in its own window and builds on top of it. You
 - **Bookmarks.** Drag any channel or DM onto the tab bar to bookmark it.
 - **Plugins.** Around 20 popular plugins are enabled out of the box, with several hundred more available in settings.
 - **Languages.** Moss is available in English, Spanish, French, German, Portuguese, Italian, Dutch, Polish, Turkish, Russian and Japanese.
-- **Automatic updates.** New versions download in the background and install the next time Moss restarts.
+- **Automatic updates.** The Moss app downloads new versions in the background and installs them the next time it restarts.
 
 ## Installation
 
-1. Download `Moss-Setup-<version>.exe` from the [releases page](https://github.com/departin/moss/releases/latest).
-2. Run the installer. It isn't code-signed yet, so Windows SmartScreen may show a warning. Click **More info**, then **Run anyway**.
-3. The installer asks whether Moss should start with Windows, and whether the official Discord app should stop launching at startup. Both can be changed later.
+Moss comes in two versions with the same features. Both are on the [releases page](https://github.com/departin/moss/releases/latest).
 
-Once installed, Moss keeps itself up to date. It can be removed from **Settings → Apps** like any other program.
+| | Moss app | Moss for Discord |
+| --- | --- | --- |
+| Download | `Moss-Setup-<version>.exe` | `Moss-for-Discord-Setup-<version>.exe` |
+| What it does | Installs Moss as its own app, alongside Discord | Adds Moss to the Discord app you already have |
+| Updates | Automatic | Run the newest setup again |
+
+Neither installer is code-signed yet, so Windows SmartScreen may show a warning. Click **More info**, then **Run anyway**.
+
+### Moss app
+
+1. Run `Moss-Setup-<version>.exe`.
+2. The installer asks whether Moss should start with Windows, and whether the official Discord app should stop launching at startup. Both can be changed later.
+
+Moss keeps itself up to date and can be removed from **Settings → Apps** like any other program.
+
+### Moss for Discord
+
+1. Run `Moss-for-Discord-Setup-<version>.exe` and pick which Discord apps get Moss (Stable, PTB or Canary). Discord closes for a moment while Moss is added.
+2. If BetterDiscord, Vencord or another mod is already installed, the setup offers to replace it. Your BetterDiscord plugins and settings are left alone, so you can switch back later.
+
+Moss stays in place when Discord updates itself. To update Moss, run the newest setup again. Uninstalling **Moss for Discord** from **Settings → Apps** puts Discord back the way it was.
 
 ## Building from source
 
@@ -54,9 +72,10 @@ cd ../moss-desktop
 bun install
 bun run build
 bunx electron-builder --win nsis --x64 --publish never
+bun run patcher
 ```
 
-The installer is written to `moss-desktop/dist`.
+Both installers are written to `moss-desktop/dist`. The last step builds Moss for Discord and needs NSIS, which electron-builder downloads on its first run.
 
 ## Disclaimer
 
